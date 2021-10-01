@@ -5,3 +5,8 @@ print(x*"yo")
 
 #that's it for now
 
+
+input(x)
+
+print(x)
+
