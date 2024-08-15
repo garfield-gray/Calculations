@@ -20,7 +20,7 @@ class AlienInvasion:
     
 
         self.clock = pygame.time.Clock()
-        self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+        self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height))
         self.settings.screen_width = self.screen.get_rect().width
         self.settings.screen_height = self.screen.get_rect().height
         pygame.display.set_caption("Alien Invason")
@@ -109,8 +109,23 @@ class AlienInvasion:
         """create the fleet."""
 
         alien = Alien(self)
-        self.aliens.add(alien)
+        alien_width = alien.rect.width
 
+
+        current_x = alien_width
+        while current_x < (self.settings.screen_width - 2 * alien_width):
+            self._create_alien(current_x)
+            current_x += 2 * alien_width
+
+
+
+    def _create_alien(self, x_position):
+        """creating an alien at x_position"""
+        new_alien = Alien(self)
+        new_alien.x = x_position
+        new_alien.rect.x = x_position
+        self.aliens.add(new_alien)
+ 
 
 if __name__ == '__main__':
     # Instanciaton
